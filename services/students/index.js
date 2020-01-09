@@ -146,6 +146,18 @@ router.delete("/:id", async (req, res) => {
     }
 })
 
+//Db check Email
+
+router.post("/checkEmail", async (req,res)=>{
+    const emailExist = await students.findOne({email: req.body.email})
+    console.log(emailExist);
+    if(emailExist){
+        res.send("Email already in use");
+    }else{
+        res.send("Email available");
+    }
+})
+
 // FileSystem DELETE by ID
 // router.delete('/:id', async (req, res) => {
 //     const students = await getStudents();
